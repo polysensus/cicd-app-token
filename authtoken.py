@@ -1,4 +1,4 @@
-from collections imprt namedtuple, Counter
+from collections import namedtuple, Counter
 from github3 import GitHub
 from pathlib import Path
 from cryptography.hazmat.backends import default_backend
