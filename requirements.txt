@@ -1,0 +1,4 @@
+cryptography
+jwcrypto
+pyjwt
+github3.py==1.3.*

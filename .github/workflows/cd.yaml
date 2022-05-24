@@ -1,0 +1,26 @@
+name: build-and-push-image
+on: [push]
+
+jobs:
+
+  build-and-publish-image:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: pre-build action image
+      run: |
+        cd $GITHUB_WORKSPACE
+        echo ${PASSWORD} | docker login -u $USERNAME --password-stdin
+        docker build -t robin0f7/cicd-app-token -f Dockerfile .
+        docker push robin0f7/cicd-app-token
+      env:
+        USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: final-test
+      uses: polysensus/cicd-app-token/actions-app-token@master
+      with:
+        APP_PEM: ${{ secrets.PUBLIC_REPO_CICD_APP_PEM }}
+        APP_ID: ${{ secrets.PUBLIC_REPO_CICD_APP_ID }}
