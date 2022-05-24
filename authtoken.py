@@ -149,4 +149,4 @@ if __name__ == '__main__':
     assert token, 'Token not returned!'
 
     print(f"::add-mask::{token}")
-    print(f"::set-output name=app_token::{token}")o
+    print(f"::set-output name=app_token::{token}")
