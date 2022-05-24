@@ -19,8 +19,8 @@ jobs:
         USERNAME: ${{ secrets.DOCKER_USERNAME }}
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: final-test
-      uses: polysensus/cicd-app-token@main
-      with:
-        APP_PEM: ${{ secrets.PUBLIC_REPO_CICD_APP_PEM }}
-        APP_ID: ${{ secrets.PUBLIC_REPO_CICD_APP_ID }}
+     #- name: final-test
+     #  uses: polysensus/cicd-app-token@main
+     #  with:
+     #    APP_PEM: ${{ secrets.PUBLIC_REPO_CICD_APP_PEM }}
+     #    APP_ID: ${{ secrets.PUBLIC_REPO_CICD_APP_ID }}
