@@ -87,7 +87,7 @@ class GitHubApp(GitHub):
 
         url = f'https://api.github.com/repos/{owner}/{repo}/installation'
 
-        headers = {'Authorization': f'Bearer {self.get_jwt().decode()}',
+        headers = {'Authorization': f'Bearer {self.get_jwt()}',
                    'Accept': 'application/vnd.github.machine-man-preview+json'}
 
         response = requests.get(url=url, headers=headers)
@@ -99,7 +99,7 @@ class GitHubApp(GitHub):
         "Get the installation access token for debugging."
 
         url = f'https://api.github.com/app/installations/{installation_id}/access_tokens'
-        headers = {'Authorization': f'Bearer {self.get_jwt().decode()}',
+        headers = {'Authorization': f'Bearer {self.get_jwt()}',
                    'Accept': 'application/vnd.github.machine-man-preview+json'}
 
         response = requests.post(url=url, headers=headers)
