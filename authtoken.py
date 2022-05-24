@@ -1,4 +1,5 @@
 from collections import namedtuple, Counter
+import base64
 from github3 import GitHub
 from pathlib import Path
 from cryptography.hazmat.backends import default_backend
@@ -73,8 +74,10 @@ class GitHubApp(GitHub):
             "exp": now + (60),
             "iss": self.app_id
         }
+
         with open(self.path, 'rb') as key_file:
-            private_key = default_backend().load_pem_private_key(key_file.read(), None)
+            pem = base64.b64decode(key_file.read())
+            private_key = default_backend().load_pem_private_key(pem, None)
             return jwt.encode(payload, private_key, algorithm='RS256')
 
     def get_installation_id(self):
