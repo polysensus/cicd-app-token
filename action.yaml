@@ -1,0 +1,19 @@
+name: 'Authenticate as a GitHub app'
+description: Authenticate as a GitHub app
+author: Polysensus
+inputs:
+  APP_PEM:
+    description: a base64 encoded PEM file used to authenticate as a GitHub App. Hint `cat key.pem | base64`
+    required: true
+  APP_ID:
+    description: App ID (GitHub)
+    required: true
+outputs:
+  app_token:
+    description: Installation access token for the GitHub App corresponding to the current repository
+branding:
+  color: 'white'
+  icon: 'unlock'
+runs:
+  using: 'docker'
+  image: 'docker://robin0f7/cicd-app-token'

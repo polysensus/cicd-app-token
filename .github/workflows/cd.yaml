@@ -20,7 +20,7 @@ jobs:
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: final-test
-      uses: polysensus/cicd-app-token/actions-app-token@master
+      uses: polysensus/cicd-app-token@main
       with:
         APP_PEM: ${{ secrets.PUBLIC_REPO_CICD_APP_PEM }}
         APP_ID: ${{ secrets.PUBLIC_REPO_CICD_APP_ID }}
