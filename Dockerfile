@@ -1,9 +1,16 @@
 FROM python:3.10-slim
 
-COPY requirements.txt app/
-COPY authtoken.py app/
-COPY entrypoint.sh app/
-RUN chmod u+x app/entrypoint.sh \
-    && pip3 install -r app/requirements.txt
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        unzip \
+        jq
 
-CMD /app/entrypoint.sh
+COPY requirements.txt app/
+RUN pip3 install -r app/requirements.txt
+
+COPY authtoken.sh app/
+RUN chmod u+x app/authtoken.sh
+
+CMD /app/authtoken.sh
