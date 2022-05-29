@@ -16,14 +16,14 @@ payload = {
 }
 pem = base64.b64decode(os.environ["INPUT_APP_PEM"])
 key = default_backend().load_pem_private_key(pem, None)
-print(jwt.encode(payload, key, algorithm='RS256'))
+print(jwt.encode(payload, key, algorithm='RS256').decode())
 PYEND
 )
 
 INSTALLATION_ID=$(curl -s -X GET \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/app/installations | jq -r .[0].id)
+  https://api.github.com/app/installations | jq -r '.[0].id')
 
 JSON=$(curl -s -X POST \
   -H "Authorization: Bearer $TOKEN" \
