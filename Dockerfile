@@ -10,7 +10,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 COPY requirements.txt app/
 RUN pip3 install -r app/requirements.txt
 
-COPY authtoken.sh app/
-RUN chmod u+x app/authtoken.sh
+COPY accesstoken.sh app/
+COPY actionauth.sh app/
+RUN    chmod u+x app/actionauth.sh \
+    && chmod u+x app/actionauth.sh
 
-CMD /app/authtoken.sh
+CMD /app/actionauth.sh
