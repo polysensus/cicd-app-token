@@ -20,5 +20,7 @@ echo "JQ: $JQ"
 echo $JSON | jq -r '.permissions'
 TOKEN=$(echo -n $JSON | jq -r '.token')
 
-printf "::add-mask::%s\n" $TOKEN
-printf "::set-output name=app_token::%s\n" $TOKEN
+# depricated: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+# printf "::add-mask::%s\n" $TOKEN
+# printf "::set-output name=app_token::%s\n" $TOKEN
+echo "app_token=$TOKEN" >> $GITHUB_OUTPUT
